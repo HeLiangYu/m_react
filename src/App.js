@@ -5,9 +5,13 @@ import store from "./store";
 
 class App extends React.Component {
   componentDidMount() {
-    store.subscribe(() => {
+    this.unMountLitener = store.subscribe(() => {
       this.forceUpdate();
     });
+  }
+
+  componentWillUnmount() {
+    this.unMountLitener();
   }
 
   add() {
@@ -18,12 +22,21 @@ class App extends React.Component {
     store.dispatch({ type: "minus" });
   }
 
+  asyncMinus() {
+    store.dispatch(() => {
+      setTimeout(() => {
+        store.dispatch({ type: "minus" });
+      }, 1000);
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <div>{store.getState()}</div>
         <button onClick={this.add}>add</button>
         <button onClick={this.minus}>minus</button>
+        <button onClick={this.asyncMinus}>asyncMinus</button>
       </div>
     );
   }

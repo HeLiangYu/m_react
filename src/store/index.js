@@ -1,5 +1,7 @@
-// import { createStore } from "redux";
-import { createStore } from "../m_redux";
+// import { createStore, applyMiddleware } from "redux";
+import looger from "redux-logger";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from "../m_redux";
 
 const counter = (state = 10, action) => {
   switch (action.type) {
@@ -12,4 +14,4 @@ const counter = (state = 10, action) => {
   }
 };
 
-export default createStore(counter);
+export default createStore(counter, applyMiddleware(looger, thunk));
