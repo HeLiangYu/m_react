@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   add() {
-    store.dispatch({ type: "add" });
+    store.dispatch({ type: "add", data: 8 });
   }
 
   minus() {
@@ -23,9 +23,9 @@ class App extends React.Component {
   }
 
   asyncMinus() {
-    store.dispatch(() => {
+    store.dispatch((dispatch) => {
       setTimeout(() => {
-        store.dispatch({ type: "minus" });
+        dispatch({ type: "minus" });
       }, 1000);
     });
   }
@@ -33,10 +33,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div>{store.getState()}</div>
+        <div>{store.getState().counter}</div>
         <button onClick={this.add}>add</button>
-        <button onClick={this.minus}>minus</button>
-        <button onClick={this.asyncMinus}>asyncMinus</button>
+        {/* <button onClick={this.minus}>minus</button>
+        <button onClick={this.asyncMinus}>asyncMinus</button> */}
       </div>
     );
   }
