@@ -28,7 +28,6 @@ const counter2 = (state = -200, action) => {
 };
 
 const rootReducer = combineReducers({ counter, counter2 });
-console.log(rootReducer);
 export default createStore(
   rootReducer,
   applyMiddleware(thunk, looger, promise)
