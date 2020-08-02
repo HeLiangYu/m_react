@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
 import ReactRedux from "./pages/reactRedux";
+import HooksPage from "./pages/reactRedux/hooksPage";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ReactRedux />
+        {/* <ReactRedux /> */}
+        <HooksPage />
       </div>
     );
   }
